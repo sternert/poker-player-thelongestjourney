@@ -32,7 +32,7 @@ namespace Nancy.Simple
             int highBetlimit = 300;
 
             var cardPoints = CardAnalyzer.GetPoints(card1, card2);
-            
+
             if (5 > state.minimum_raise)
             {
                 limit = 120;
@@ -58,11 +58,6 @@ namespace Nancy.Simple
                 limit = 0;
             }
 
-            if (player.bet == 0)
-            {
-                limit += 20;
-            }
-
             if (100 == CardAnalyzer.HighPair(card1, card2))
             {
                 return state.current_buy_in - player.bet + state.minimum_raise * 8;
@@ -79,6 +74,18 @@ namespace Nancy.Simple
             }
 
             return 0;
+        }
+
+        private static double MultiplyLimit(Player player)
+        {
+            if (player.bet == 0)
+            {
+                return 1.2;
+            }
+            else
+            {
+                return 1;
+            }
         }
 
         public static void ShowDown(JObject gameState)
