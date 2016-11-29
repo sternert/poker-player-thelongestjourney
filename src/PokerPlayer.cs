@@ -32,11 +32,11 @@ namespace Nancy.Simple
 
             var cardPoints = CardAnalyzer.GetPoints(card1, card2);
 
-            if (5 > state.minimum_raise)
+            if (state.minimum_raise < 5)
             {
                 limit = 120;
             }
-            else if (7 > state.minimum_raise)
+            else if (state.minimum_raise < 7)
             {
                 limit = 100;
                 if (player.bet == 0)
@@ -44,7 +44,7 @@ namespace Nancy.Simple
                     limit += 10;
                 }
             }
-            else if (9 > state.minimum_raise)
+            else if (state.minimum_raise < 9)
             {
                 limit = 40;
                 if (player.bet == 0)
@@ -52,7 +52,7 @@ namespace Nancy.Simple
                     limit += 10;
                 }
             }
-            else if (17 > state.minimum_raise)
+            else if (state.minimum_raise < 17)
             {
                 limit = 20;
                 if (player.bet == 0)
