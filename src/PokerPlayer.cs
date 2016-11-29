@@ -23,11 +23,11 @@ namespace Nancy.Simple
             if (state.community_cards.Any())
             {
                 Console.Error.WriteLine("CommunityCards!");
-                var totalPoints = HandAnalyzer.TotalPoints(card1, card2, state.community_cards);
-                if (totalPoints > 400)
-                {
-                    return state.current_buy_in - player.bet + state.minimum_raise * 8;
-                }
+                //var totalPoints = HandAnalyzer.TotalPoints(card1, card2, state.community_cards);
+                //if (totalPoints > 400)
+                //{
+                //    return state.current_buy_in - player.bet + state.minimum_raise * 8;
+                //}
 
             }
             int limit = 140;
@@ -54,11 +54,6 @@ namespace Nancy.Simple
             else
             {
                 limit = 10;
-            }
-
-            if (state.players.Count(x => String.Equals(x.status, "active", StringComparison.InvariantCultureIgnoreCase)) == 2 && state.round > 2000 && player.bet > 500)
-            {
-                limit = 0;
             }
              
             if (100 == CardAnalyzer.HighPair(card1, card2))
