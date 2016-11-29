@@ -77,11 +77,15 @@ namespace Nancy.Simple
 
             if (numberOfActivePlayers(state.players) == 2)
             {
-                var karinDaniel =
-                    state.players.FirstOrDefault(other => other.status == "active" && other.name == "KarinDaniel");
-                if (karinDaniel != null && karinDaniel.stack == 0 && player.stack >= 1000)
+                    
+                var otherPlayer = state.players.FirstOrDefault(other => other.status == "active");
+                if (player.stack + player.bet > (1.2 * (otherPlayer.stack + otherPlayer.bet)))
                 {
-                    limit = 120;
+                    limit = limit*0.6;
+                }
+                else if (otherPlayer.name == "KarinDaniel" && otherPlayer.stack == 0 && player.stack >= 1000)
+                {
+                    limit = limit * 1.2;
                 }
             }
             if ((player.stack + player.bet) < state.small_blind * 4)
@@ -91,7 +95,7 @@ namespace Nancy.Simple
 
             if (limit < cardPoints)
             {
-                return state.pot + 30;
+                return (state.pot + 15) * 2;
             }
 
             return 0;
