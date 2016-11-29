@@ -16,15 +16,31 @@ namespace Nancy.Simple
             var card1 = player.hole_cards[0];
             var card2 = player.hole_cards[1];
 
-            if (highcard(card1, card2))
+            if (200 < state.round)
             {
-                return state.current_buy_in - player.bet + state.minimum_raise;
+                if (60 < highcard(card1, card2))
+                {
+                    return state.current_buy_in - player.bet + state.minimum_raise;
+                }
+
+                if (card1.rank == card2.rank)
+                {
+                    return state.current_buy_in - player.bet + state.minimum_raise * 4;
+                }
+            }
+            else
+            {
+                if (100 < highcard(card1, card2))
+                {
+                    return state.current_buy_in - player.bet + state.minimum_raise;
+                }
+
+                if (card1.rank == card2.rank)
+                {
+                    return state.current_buy_in - player.bet + state.minimum_raise * 4;
+                }
             }
 
-            if (card1.rank == card2.rank)
-            {
-                return state.current_buy_in - player.bet + state.minimum_raise * 4;
-            }
 
             return 0;
         }
@@ -59,7 +75,7 @@ namespace Nancy.Simple
             return 0;
         }
 
-        private static bool highcard(HoleCard card1, HoleCard card2)
+        private static int highcard(HoleCard card1, HoleCard card2)
         {
             int points = 0;
 
@@ -72,13 +88,7 @@ namespace Nancy.Simple
                 points += 50;
             }
 
-            if (points > 100)
-            {
-                return true;
-            }
-
-
-            return false;
+            return points;
         }
 
         public static void ShowDown(JObject gameState)
