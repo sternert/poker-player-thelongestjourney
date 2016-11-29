@@ -8,7 +8,7 @@ namespace Nancy.Simple
 {
     public static class PokerPlayer
     {
-        public static readonly string VERSION = "1.0.5";
+        public static readonly string VERSION = "1.0.6";
 
         public static int BetRequest(JObject gameState)
         {
@@ -49,13 +49,9 @@ namespace Nancy.Simple
             {
                 limit = 20;
             }
-            else if (30 > state.minimum_raise)
-            {
-                limit = 10;
-            }
             else
             {
-                limit = 0;
+                limit = 10;
             }
 
             if (100 == CardAnalyzer.HighPair(card1, card2))
