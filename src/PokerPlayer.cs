@@ -21,6 +21,7 @@ namespace Nancy.Simple
 
             if (state.community_cards.Any())
             {
+                Console.Error.WriteLine("CommunityCards!");
                 var totalPoints = HandAnalyzer.TotalPoints(card1, card2, state.community_cards);
                 if (totalPoints > 400)
                 {
@@ -33,19 +34,19 @@ namespace Nancy.Simple
 
             var cardPoints = CardAnalyzer.GetPoints(card1, card2);
 
-            if (state.round < 300)
+            if (5 > state.minimum_raise)
             {
                 limit = 120;
             }
-            else if (state.round < 500)
+            else if (7 > state.minimum_raise)
             {
                 limit = 100;
             }
-            else if (state.round < 700)
+            else if (12 > state.minimum_raise)
             {
                 limit = 40;
             }
-            else if (state.round < 1500)
+            else if (17 > state.minimum_raise)
             {
                 limit = 20;
             }
