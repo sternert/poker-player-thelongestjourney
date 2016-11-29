@@ -4,7 +4,7 @@ namespace Nancy.Simple
 {
     public static class PokerPlayer
     {
-        public static readonly string VERSION = "1.0.0";
+        public static readonly string VERSION = "1.0.1";
 
         public static int BetRequest(JObject gameState)
         {
@@ -26,7 +26,7 @@ namespace Nancy.Simple
                 return state.current_buy_in - player.bet + state.minimum_raise * 4;
             }
 
-            return state.current_buy_in - player.bet + state.minimum_raise;
+            return 0;
         }
 
         private static int CardPoints(HoleCard card)
