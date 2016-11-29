@@ -19,7 +19,7 @@ namespace Nancy.Simple
             var card2 = player.hole_cards[1];
 
             var totalPoints = TotalPoints(card1, card2, state.community_cards);
-            int limit = 100;
+            int limit = 120;
             int highBetlimit = 300;
 
             var cardPoints = CardAnalyzer.GetPoints(card1, card2);
@@ -31,6 +31,8 @@ namespace Nancy.Simple
 
             limit = limit * (1 + state.bet_index / 100);
             highBetlimit = highBetlimit * (1 + state.bet_index / 100);
+
+
 
             if (100 == CardAnalyzer.HighPair(card1, card2))
             {
