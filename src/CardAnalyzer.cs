@@ -1,7 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
 
 namespace Nancy.Simple
 {
@@ -37,45 +34,58 @@ namespace Nancy.Simple
             return 0;
         }
 
-        public static int Highcard(HoleCard card1, HoleCard card2)
+        public static int GetPoints(HoleCard card1, HoleCard card2)
         {
             int points = 0;
+            points += Highcard(card1, card2);
+            points += HighPair(card1, card2);
 
-
-            points += CardPoints(card1);
-            points += CardPoints(card2);
-
-            if (card1.suit == card2.suit)
+            if (IsPair(card1, card2))
             {
-                points += 50;
+                points += 60;
+            }
+
+            if (IsSuit(card1, card2))
+            {
+                points += 20;
             }
 
             return points;
         }
 
-        public static Boolean HighPair(HoleCard card1, HoleCard card2)
+        public static int Highcard(HoleCard card1, HoleCard card2)
+        {
+            int points = 0;
+
+            points += CardPoints(card1);
+            points += CardPoints(card2);
+
+            return points;
+        }
+
+        public static int HighPair(HoleCard card1, HoleCard card2)
         {
             if (!IsPair(card1, card2))
             {
-                return false;
+                return 0;
             }
 
             if (card1.rank == "A" || card1.rank == "K" || card1.rank == "Q")
             {
-                return true;
+                return 100;
             }
 
-            return false;
+            return 0;
         }
 
         public static Boolean IsPair(HoleCard card1, HoleCard card2)
         {
-            if (card1.rank != card2.rank)
-            {
-                return true;
-            }
+            return card1.rank == card2.rank;
+        }
 
-            return false;
+        public static Boolean IsSuit(HoleCard card1, HoleCard card2)
+        {
+            return card1.suit == card2.suit;
         }
     }
 }
