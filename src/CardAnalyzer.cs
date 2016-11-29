@@ -52,7 +52,7 @@ namespace Nancy.Simple
 
             if (IsSuit(card1, card2))
             {
-                points += 15;
+                points += 5;
             }
 
             return points;
