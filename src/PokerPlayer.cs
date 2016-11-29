@@ -84,6 +84,10 @@ namespace Nancy.Simple
                     limit = 120;
                 }
             }
+            if ((player.stack + player.bet) < state.small_blind * 4)
+            {
+                limit = 0;
+            }
 
             if (limit < cardPoints)
             {
