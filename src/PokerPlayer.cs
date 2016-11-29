@@ -57,7 +57,6 @@ namespace Nancy.Simple
 
         private static int TotalPoints(HoleCard handCard1, HoleCard handCard2, List<CommunityCard> communityCards)
         {
-            CardRankCommunicator.CallRainMan();
             return 0;
         }
     }
