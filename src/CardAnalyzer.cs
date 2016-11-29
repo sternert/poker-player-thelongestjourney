@@ -13,7 +13,7 @@ namespace Nancy.Simple
                 case "K":
                     return 60;
                 case "Q":
-                    return 40;
+                    return 30;
                 case "J":
                     return 20;
                 case "10":

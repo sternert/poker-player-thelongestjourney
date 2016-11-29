@@ -37,25 +37,25 @@ namespace Nancy.Simple
             {
                 limit = 120;
             }
-            else if (state.small_blind * 2 < 7)
-            {
-                limit = 100;
-                if (player.bet == 0)
-                {
-                    limit += 10;
-                }
-            }
             else if (state.small_blind * 2 < 9)
             {
-                limit = 40;
+                limit = 110;
                 if (player.bet == 0)
                 {
                     limit += 10;
                 }
             }
-            else if (state.small_blind * 2 < 17)
+            else if (state.small_blind * 2 < 14)
             {
-                limit = 20;
+                limit = 80;
+                if (player.bet == 0)
+                {
+                    limit += 10;
+                }
+            }
+            else if (state.small_blind * 2 < 19)
+            {
+                limit = 60;
                 if (player.bet == 0)
                 {
                     limit += 20;
@@ -63,7 +63,7 @@ namespace Nancy.Simple
             }
             else
             {
-                limit = 10;
+                limit = 40;
                 if (player.bet == 0)
                 {
                     limit += 26;
