@@ -40,19 +40,35 @@ namespace Nancy.Simple
             }
             else if (7 > state.minimum_raise)
             {
-                limit = 100 + 10;
+                limit = 100;
+                if (player.bet == 0)
+                {
+                    limit += 10;
+                }
             }
             else if (12 > state.minimum_raise)
             {
-                limit = 40 + 10;
+                limit = 40;
+                if (player.bet == 0)
+                {
+                    limit += 10;
+                }
             }
             else if (17 > state.minimum_raise)
             {
-                limit = 20 + 20;
+                limit = 20;
+                if (player.bet == 0)
+                {
+                    limit += 20;
+                }
             }
             else
             {
-                limit = 10 + 26;
+                limit = 10;
+                if (player.bet == 0)
+                {
+                    limit += 26;
+                }
             }
 
             if (100 == CardAnalyzer.HighPair(card1, card2))
