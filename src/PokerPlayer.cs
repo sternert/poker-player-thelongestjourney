@@ -6,7 +6,7 @@ namespace Nancy.Simple
 {
     public static class PokerPlayer
     {
-        public static readonly string VERSION = "1.0.3";
+        public static readonly string VERSION = "1.0.4";
 
         public static int BetRequest(JObject gameState)
         {
@@ -19,14 +19,22 @@ namespace Nancy.Simple
             var card2 = player.hole_cards[1];
 
             var totalPoints = TotalPoints(card1, card2, state.community_cards);
-            int limit = 120;
+            int limit = 140;
             int highBetlimit = 300;
 
             var cardPoints = CardAnalyzer.GetPoints(card1, card2);
 
-            if (200 < state.round)
+            if (300 < state.round)
             {
-                limit = 60;
+                limit = 120;
+            }
+            else if (500 < state.round)
+            {
+                limit = 100;
+            }
+            else if (700 < state.round)
+            {
+                limit = 80;
             }
 
             limit = limit * (1 + state.bet_index / 100);
