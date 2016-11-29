@@ -79,7 +79,7 @@ namespace Nancy.Simple
                     }
                     else if (otherPlayer.stack == 0 && player.stack >= 1000)
                     {
-                        limit = limit*1.6;
+                        limit = limit*3;
                     }
                 }
             }
