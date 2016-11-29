@@ -34,19 +34,19 @@ namespace Nancy.Simple
 
             var cardPoints = CardAnalyzer.GetPoints(card1, card2);
 
-            if (300 < state.round)
+            if (300 > state.round)
             {
                 limit = 120;
             }
-            else if (500 < state.round)
+            else if (500 > state.round)
             {
                 limit = 100;
             }
-            else if (700 < state.round)
+            else if (700 > state.round)
             {
                 limit = 40;
             }
-            else if (1500 < state.round)
+            else if (1500 > state.round)
             {
                 limit = 20;
             }
