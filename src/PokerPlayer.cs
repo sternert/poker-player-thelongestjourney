@@ -55,17 +55,17 @@ namespace Nancy.Simple
 
             if (100 == CardAnalyzer.HighPair(card1, card2))
             {
-                return state.pot + 10;
+                return state.pot + 30;
             }
 
             if (highBetlimit < cardPoints)
             {
-                return state.pot + 10;
+                return state.pot + 30;
             }
 
             if (limit < cardPoints)
             {
-                return state.pot + 10;
+                return state.pot + 30;
             }
 
             return 0;
