@@ -29,18 +29,28 @@ namespace Nancy.Simple
                 }
 
             }
-            int limit = 100;
+            int limit = 140;
             int highBetlimit = 300;
 
             var cardPoints = CardAnalyzer.GetPoints(card1, card2);
 
-            if (200 < state.round)
+            if (300 < state.round)
             {
-                limit = 60;
+                limit = 120;
+            }
+            else if (500 < state.round)
+            {
+                limit = 100;
+            }
+            else if (700 < state.round)
+            {
+                limit = 80;
             }
 
             limit = limit * (1 + state.bet_index / 100);
             highBetlimit = highBetlimit * (1 + state.bet_index / 100);
+
+
 
             if (100 == CardAnalyzer.HighPair(card1, card2))
             {
