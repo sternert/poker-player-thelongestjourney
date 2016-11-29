@@ -34,15 +34,18 @@ namespace Nancy.Simple
             return 0;
         }
 
-        public static int Highcard(HoleCard card1, HoleCard card2)
+        public static int GetPoints(HoleCard card1, HoleCard card2)
         {
             int points = 0;
+            points += Highcard(card1, card2);
+            points += HighPair(card1, card2);
 
+            if (IsPair(card1, card2))
+            {
+                points += 50;
+            }
 
-            points += CardPoints(card1);
-            points += CardPoints(card2);
-
-            if (card1.suit == card2.suit)
+            if (IsSuit(card1, card2))
             {
                 points += 50;
             }
@@ -50,16 +53,12 @@ namespace Nancy.Simple
             return points;
         }
 
-        public static int GetPoints(HoleCard card1, HoleCard card2)
+        public static int Highcard(HoleCard card1, HoleCard card2)
         {
             int points = 0;
-            points += Highcard(card1, card2);
-            points += HighPair(card1, card2);
 
-            if (IsPair(card1, card1))
-            {
-                points += 50;
-            }
+            points += CardPoints(card1);
+            points += CardPoints(card2);
 
             return points;
         }
@@ -82,6 +81,11 @@ namespace Nancy.Simple
         public static Boolean IsPair(HoleCard card1, HoleCard card2)
         {
             return card1.rank == card2.rank;
+        }
+
+        public static Boolean IsSuit(HoleCard card1, HoleCard card2)
+        {
+            return card1.suit == card2.suit;
         }
     }
 }
