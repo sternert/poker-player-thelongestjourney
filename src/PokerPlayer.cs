@@ -22,7 +22,7 @@ namespace Nancy.Simple
 
             if (state.community_cards.Any())
             {
-                var totalPoints = TotalPoints(card1, card2, state.community_cards);
+                var totalPoints = HandAnalyzer.TotalPoints(card1, card2, state.community_cards);
                 if (totalPoints > 400)
                 {
                     return state.current_buy_in - player.bet + state.minimum_raise * 8;
@@ -77,35 +77,6 @@ namespace Nancy.Simple
         public static void ShowDown(JObject gameState)
         {
             //TODO: Use this method to showdown
-        }
-
-        private static int TotalPoints(HoleCard handCard1, HoleCard handCard2, List<CommunityCard> communityCards)
-        {
-            var cardList = new List<HoleCard>();
-            cardList.Add(handCard1);
-            cardList.Add(handCard2);
-
-            foreach (var communityCard in communityCards)
-            {
-                var holeCard = new HoleCard();
-                holeCard.rank = communityCard.rank;
-                holeCard.suit = communityCard.suit;
-                cardList.Add(holeCard);
-            }
-
-            if (Flush(cardList))
-            {
-                Console.Error.WriteLine("Flush!");
-                return 1000;
-            }
-
-            return 0;
-        }
-
-        private static bool Flush(List<HoleCard> cardList)
-        {
-            var grouped = cardList.GroupBy(group => group.suit);
-            return grouped.OrderByDescending(group => group.Count()).First().Count() >= 5;
         }
     }
 }
