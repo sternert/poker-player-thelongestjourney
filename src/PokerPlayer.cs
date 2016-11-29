@@ -55,7 +55,7 @@ namespace Nancy.Simple
             {
                 limit = 0;
             }
-
+             
             if (100 == CardAnalyzer.HighPair(card1, card2))
             {
                 return state.current_buy_in - player.bet + state.minimum_raise * 8;
