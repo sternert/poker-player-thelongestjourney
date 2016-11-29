@@ -1,7 +1,5 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.Linq;
-using System.Runtime.InteropServices;
 using Newtonsoft.Json.Linq;
 
 namespace Nancy.Simple
@@ -46,7 +44,7 @@ namespace Nancy.Simple
                     limit += 10;
                 }
             }
-            else if (12 > state.minimum_raise)
+            else if (9 > state.minimum_raise)
             {
                 limit = 40;
                 if (player.bet == 0)
@@ -73,17 +71,17 @@ namespace Nancy.Simple
 
             if (100 == CardAnalyzer.HighPair(card1, card2))
             {
-                return state.pot;
+                return state.pot + 10;
             }
 
             if (highBetlimit < cardPoints)
             {
-                return state.pot;
+                return state.pot + 10;
             }
 
             if (limit < cardPoints)
             {
-                return state.pot;
+                return state.pot + 10;
             }
 
             return 0;
