@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.Linq;
 using Newtonsoft.Json.Linq;
 
@@ -91,6 +92,10 @@ namespace Nancy.Simple
         {
             //TODO: Use this method to showdown
         }
+
+        public static int numberOfActivePlayers(List<Player> players)
+        {
+            return players.Count(player => player.status == "active");
+        }
     }
 }
-
