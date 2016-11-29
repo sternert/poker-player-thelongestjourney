@@ -42,12 +42,12 @@ namespace Nancy.Simple
 
             if (IsPair(card1, card2))
             {
-                points += 50;
+                points += 60;
             }
 
             if (IsSuit(card1, card2))
             {
-                points += 50;
+                points += 20;
             }
 
             return points;

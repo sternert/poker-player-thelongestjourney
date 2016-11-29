@@ -24,7 +24,6 @@ namespace Nancy.Simple
 
             var cardPoints = CardAnalyzer.GetPoints(card1, card2);
 
-
             if (200 < state.round)
             {
                 limit = 60;
