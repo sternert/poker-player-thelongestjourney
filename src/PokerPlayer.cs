@@ -16,79 +16,29 @@ namespace Nancy.Simple
             var card1 = player.hole_cards[0];
             var card2 = player.hole_cards[1];
 
+            int limit = 100;
+
             if (200 < state.round)
             {
-                if (60 < highcard(card1, card2))
-                {
-                    return state.current_buy_in - player.bet + state.minimum_raise;
-                }
-
-                if (card1.rank == card2.rank)
-                {
-                    return state.current_buy_in - player.bet + state.minimum_raise * 4;
-                }
-            }
-            else
-            {
-                if (100 < highcard(card1, card2))
-                {
-                    return state.current_buy_in - player.bet + state.minimum_raise;
-                }
-
-                if (card1.rank == card2.rank)
-                {
-                    return state.current_buy_in - player.bet + state.minimum_raise * 4;
-                }
+                limit = 60;
             }
 
-
-            return 0;
-        }
-
-        private static int CardPoints(HoleCard card)
-        {
-            if (card.rank == "A")
+            if (200 == CardAnalyzer.Highcard(card1, card2))
             {
-                return 100;
+                return state.pot;
             }
 
-            if (card.rank == "K")
+            if (limit < CardAnalyzer.Highcard(card1, card2))
             {
-                return 60;
+                return state.current_buy_in - player.bet + state.minimum_raise;
             }
 
-            if (card.rank == "Q")
+            if (card1.rank == card2.rank)
             {
-                return 40;
-            }
-
-            if (card.rank == "J")
-            {
-                return 20;
-            }
-
-            if (card.rank == "10")
-            {
-                return 10;
+                return state.current_buy_in - player.bet + state.minimum_raise * 4;
             }
 
             return 0;
-        }
-
-        private static int highcard(HoleCard card1, HoleCard card2)
-        {
-            int points = 0;
-
-
-            points += CardPoints(card1);
-            points += CardPoints(card2);
-
-            if (card1.suit == card2.suit)
-            {
-                points += 50;
-            }
-
-            return points;
         }
 
         public static void ShowDown(JObject gameState)
