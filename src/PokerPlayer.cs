@@ -19,8 +19,19 @@ namespace Nancy.Simple
             var card2 = player.hole_cards[1];
 
             var totalPoints = TotalPoints(card1, card2, state.community_cards);
+            int limit = 100;
 
-            if (highcard(card1, card2))
+            if (200 < state.round)
+            {
+                limit = 60;
+            }
+
+            if (200 == CardAnalyzer.Highcard(card1, card2))
+            {
+                return state.pot;
+            }
+
+            if (limit < CardAnalyzer.Highcard(card1, card2))
             {
                 return state.current_buy_in - player.bet + state.minimum_raise;
             }
@@ -31,58 +42,6 @@ namespace Nancy.Simple
             }
 
             return 0;
-        }
-
-        private static int CardPoints(HoleCard card)
-        {
-            if (card.rank == "A")
-            {
-                return 100;
-            }
-
-            if (card.rank == "K")
-            {
-                return 60;
-            }
-
-            if (card.rank == "Q")
-            {
-                return 40;
-            }
-
-            if (card.rank == "J")
-            {
-                return 20;
-            }
-
-            if (card.rank == "10")
-            {
-                return 10;
-            }
-
-            return 0;
-        }
-
-        private static bool highcard(HoleCard card1, HoleCard card2)
-        {
-            int points = 0;
-
-
-            points += CardPoints(card1);
-            points += CardPoints(card2);
-
-            if (card1.suit == card2.suit)
-            {
-                points += 50;
-            }
-
-            if (points > 100)
-            {
-                return true;
-            }
-
-
-            return false;
         }
 
         public static void ShowDown(JObject gameState)
