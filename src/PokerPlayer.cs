@@ -18,17 +18,6 @@ namespace Nancy.Simple
             var card1 = player.hole_cards[0];
             var card2 = player.hole_cards[1];
 
-
-            if (state.community_cards.Any())
-            {
-                Console.Error.WriteLine("CommunityCards!");
-                //var totalPoints = HandAnalyzer.TotalPoints(card1, card2, state.community_cards);
-                //if (totalPoints > 400)
-                //{
-                //    return state.current_buy_in - player.bet + state.minimum_raise * 8;
-                //}
-
-            }
             double limit = 140;
 
             var cardPoints = CardAnalyzer.GetPoints(card1, card2);
