@@ -81,12 +81,7 @@ namespace Nancy.Simple
 
         public static Boolean IsPair(HoleCard card1, HoleCard card2)
         {
-            if (card1.rank != card2.rank)
-            {
-                return true;
-            }
-
-            return false;
+            return card1.rank == card2.rank;
         }
     }
 }
