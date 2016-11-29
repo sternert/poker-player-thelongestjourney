@@ -1,4 +1,6 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
+using System.Linq;
 using System.Runtime.InteropServices;
 using Newtonsoft.Json.Linq;
 
@@ -6,7 +8,7 @@ namespace Nancy.Simple
 {
     public static class PokerPlayer
     {
-        public static readonly string VERSION = "1.0.4";
+        public static readonly string VERSION = "1.0.5";
 
         public static int BetRequest(JObject gameState)
         {
@@ -34,12 +36,16 @@ namespace Nancy.Simple
             }
             else if (700 < state.round)
             {
-                limit = 80;
+                limit = 40;
+            }
+
+            if (state.players.Count(x => String.Equals(x.status, "active", StringComparison.InvariantCultureIgnoreCase)) == 2 && state.round > 2000 && player.bet > 500)
+            {
+                limit = 0;
             }
 
             limit = limit * (1 + state.bet_index / 100);
             highBetlimit = highBetlimit * (1 + state.bet_index / 100);
-
 
 
             if (100 == CardAnalyzer.HighPair(card1, card2))
