@@ -17,25 +17,29 @@ namespace Nancy.Simple
             var card2 = player.hole_cards[1];
 
             int limit = 100;
+            int highBetlimit = 300;
+
+            var cardPoints = CardAnalyzer.GetPoints(card1, card2);
+
 
             if (200 < state.round)
             {
                 limit = 60;
             }
 
-            if (200 == CardAnalyzer.Highcard(card1, card2))
+            if (100 == CardAnalyzer.HighPair(card1, card2))
             {
                 return state.pot;
             }
 
-            if (limit < CardAnalyzer.Highcard(card1, card2))
-            {
-                return state.current_buy_in - player.bet + state.minimum_raise;
-            }
-
-            if (CardAnalyzer.IsPair(card1, card2))
+            if (cardPoints > highBetlimit)
             {
                 return state.current_buy_in - player.bet + state.minimum_raise * 4;
+            }
+
+            if (limit < cardPoints)
+            {
+                return state.current_buy_in - player.bet + state.minimum_raise;
             }
 
             return 0;

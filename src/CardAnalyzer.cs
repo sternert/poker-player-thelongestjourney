@@ -1,7 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
 
 namespace Nancy.Simple
 {
@@ -53,19 +50,33 @@ namespace Nancy.Simple
             return points;
         }
 
-        public static Boolean HighPair(HoleCard card1, HoleCard card2)
+        public static int GetPoints(HoleCard card1, HoleCard card2)
+        {
+            int points = 0;
+            points += Highcard(card1, card2);
+            points += HighPair(card1, card2);
+
+            if (IsPair(card1, card1))
+            {
+                points += 50;
+            }
+
+            return points;
+        }
+
+        public static int HighPair(HoleCard card1, HoleCard card2)
         {
             if (!IsPair(card1, card2))
             {
-                return false;
+                return 0;
             }
 
             if (card1.rank == "A" || card1.rank == "K" || card1.rank == "Q")
             {
-                return true;
+                return 100;
             }
 
-            return false;
+            return 0;
         }
 
         public static Boolean IsPair(HoleCard card1, HoleCard card2)
