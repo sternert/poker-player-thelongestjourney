@@ -22,6 +22,7 @@ namespace Nancy.Simple
 
             if (state.community_cards.Any())
             {
+                Console.Error.WriteLine("CommunityCards!");
                 var totalPoints = HandAnalyzer.TotalPoints(card1, card2, state.community_cards);
                 if (totalPoints > 400)
                 {

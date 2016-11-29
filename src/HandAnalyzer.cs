@@ -46,7 +46,21 @@ namespace Nancy.Simple
                 return 600;
             }
 
+            if (TwoOfAKind(cardList))
+            {
+                Console.Error.WriteLine("TwoOfAKind!");
+                return 400;
+            }
+
             return 0;
+        }
+
+        private static bool TwoOfAKind(List<HoleCard> cardList)
+        {
+            var grouped = cardList.GroupBy(group => group.rank);
+            var highest = grouped.OrderByDescending(group => group.Count()).ToArray()[0];
+            var second = grouped.OrderByDescending(group => group.Count()).ToArray()[1];
+            return highest.Count() == 2 && second.Count() == 2;
         }
 
         private static bool FullHouse(List<HoleCard> cardList)
