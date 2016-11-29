@@ -12,6 +12,15 @@ namespace Nancy.Simple
             var state = gameState.ToObject<MainState>();
 		    var player = state.players[state.in_action];
 
+
+		    var card1 = player.hole_cards[0];
+            var card2 = player.hole_cards[1];
+
+		    if (card1.rank == card2.rank)
+		    {
+                return state.current_buy_in - player.bet + state.minimum_raise * 4;
+            }
+
             return state.current_buy_in - player.bet + state.minimum_raise;
 		}
 
