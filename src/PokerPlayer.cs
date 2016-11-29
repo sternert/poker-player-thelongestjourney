@@ -51,6 +51,14 @@ namespace Nancy.Simple
             {
                 limit = 20;
             }
+            else if (30 > state.minimum_raise)
+            {
+                limit = 10;
+            }
+            else
+            {
+                limit = 0;
+            }
 
             if (state.players.Count(x => String.Equals(x.status, "active", StringComparison.InvariantCultureIgnoreCase)) == 2 && state.round > 2000 && player.bet > 500)
             {
