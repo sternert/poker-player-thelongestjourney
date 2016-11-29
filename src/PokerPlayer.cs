@@ -28,7 +28,7 @@ namespace Nancy.Simple
 
             if (200 == CardAnalyzer.Highcard(card1, card2))
             {
-                return state.pot;
+                return state.current_buy_in - player.bet + state.minimum_raise * 8;
             }
 
             if (limit < CardAnalyzer.Highcard(card1, card2))
