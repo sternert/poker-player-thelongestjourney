@@ -6,7 +6,7 @@ namespace Nancy.Simple
 {
     public static class PokerPlayer
     {
-        public static readonly string VERSION = "1.0.1";
+        public static readonly string VERSION = "1.0.4";
 
         public static int BetRequest(JObject gameState)
         {
@@ -51,7 +51,7 @@ namespace Nancy.Simple
 
         private static int TotalPoints(HoleCard handCard1, HoleCard handCard2, List<CommunityCard> communityCards)
         {
-
+            CardRankCommunicator.CallRainMan();
             return 0;
         }
     }
