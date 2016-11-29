@@ -55,12 +55,22 @@ namespace Nancy.Simple
 
         public static Boolean HighPair(HoleCard card1, HoleCard card2)
         {
-            if (card1.rank != card2.rank)
+            if (!IsPair(card1, card2))
             {
                 return false;
             }
 
             if (card1.rank == "A" || card1.rank == "K" || card1.rank == "Q")
+            {
+                return true;
+            }
+
+            return false;
+        }
+
+        public static Boolean IsPair(HoleCard card1, HoleCard card2)
+        {
+            if (card1.rank != card2.rank)
             {
                 return true;
             }
