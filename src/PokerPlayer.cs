@@ -16,7 +16,6 @@ namespace Nancy.Simple
             var state = gameState.ToObject<MainState>();
             var player = state.players[state.in_action];
 
-
             var card1 = player.hole_cards[0];
             var card2 = player.hole_cards[1];
 
@@ -34,19 +33,19 @@ namespace Nancy.Simple
 
             var cardPoints = CardAnalyzer.GetPoints(card1, card2);
 
-            if (300 > state.round)
+            if (state.round < 300)
             {
                 limit = 120;
             }
-            else if (500 > state.round)
+            else if (state.round < 500)
             {
                 limit = 100;
             }
-            else if (700 > state.round)
+            else if (state.round < 700)
             {
                 limit = 40;
             }
-            else if (1500 > state.round)
+            else if (state.round < 1500)
             {
                 limit = 20;
             }
@@ -55,7 +54,7 @@ namespace Nancy.Simple
             {
                 limit = 0;
             }
-             
+
             if (100 == CardAnalyzer.HighPair(card1, card2))
             {
                 return state.current_buy_in - player.bet + state.minimum_raise * 8;
