@@ -66,15 +66,21 @@ namespace Nancy.Simple
 
             if (numberOfActivePlayers(state.players) == 2)
             {
-                    
                 var otherPlayer = state.players.FirstOrDefault(other => other.id != player.id && other.status == "active");
                 if (player.stack + player.bet > (1.2 * (otherPlayer.stack + otherPlayer.bet)))
                 {
                     limit = limit*0.6;
                 }
-                else if (otherPlayer.name == "KarinDaniel" && otherPlayer.stack == 0 && player.stack >= 1000)
+                else if (otherPlayer.name == "KarinDaniel")
                 {
-                    limit = limit * 1.6;
+                    if (otherPlayer.bet <= state.small_blind * 2)
+                    {
+                        limit = limit*0.3;
+                    }
+                    else if (otherPlayer.stack == 0 && player.stack >= 1000)
+                    {
+                        limit = limit*1.6;
+                    }
                 }
             }
             if ((player.stack + player.bet) < state.small_blind * 4)
