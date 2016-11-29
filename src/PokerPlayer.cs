@@ -6,7 +6,7 @@ namespace Nancy.Simple
 {
     public static class PokerPlayer
     {
-        public static readonly string VERSION = "1.0.1";
+        public static readonly string VERSION = "1.0.2";
 
         public static int BetRequest(JObject gameState)
         {
@@ -29,12 +29,15 @@ namespace Nancy.Simple
                 limit = 60;
             }
 
+            limit = limit * (1 + state.bet_index / 100);
+            highBetlimit = highBetlimit * (1 + state.bet_index / 100);
+
             if (100 == CardAnalyzer.HighPair(card1, card2))
             {
                 return state.current_buy_in - player.bet + state.minimum_raise * 8;
             }
 
-            if (cardPoints > highBetlimit)
+            if (highBetlimit < cardPoints)
             {
                 return state.current_buy_in - player.bet + state.minimum_raise * 4;
             }
