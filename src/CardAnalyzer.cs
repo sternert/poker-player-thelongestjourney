@@ -6,32 +6,39 @@ namespace Nancy.Simple
     {
         public static int CardPoints(HoleCard card)
         {
-            if (card.rank == "A")
+            switch (card.rank)
             {
-                return 100;
+                case "A":
+                    return 100;
+                case "K":
+                    return 60;
+                case "Q":
+                    return 40;
+                case "J":
+                    return 20;
+                case "10":
+                    return 10;
+                case "9":
+                    return 9;
+                case "8":
+                    return 8;
+                case "7":
+                    return 7;
+                case "6":
+                    return 6;
+                case "5":
+                    return 5;
+                case "4":
+                    return 4;
+                case "3":
+                    return 3;
+                case "2":
+                    return 2;
+                case "1":
+                    return 1;
+                default:
+                    return 0;
             }
-
-            if (card.rank == "K")
-            {
-                return 60;
-            }
-
-            if (card.rank == "Q")
-            {
-                return 40;
-            }
-
-            if (card.rank == "J")
-            {
-                return 20;
-            }
-
-            if (card.rank == "10")
-            {
-                return 10;
-            }
-
-            return 0;
         }
 
         public static int GetPoints(HoleCard card1, HoleCard card2)
