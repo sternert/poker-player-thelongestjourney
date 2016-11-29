@@ -1,7 +1,5 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.Linq;
-using System.Runtime.InteropServices;
 using Newtonsoft.Json.Linq;
 
 namespace Nancy.Simple
@@ -43,7 +41,7 @@ namespace Nancy.Simple
             {
                 limit = 100;
             }
-            else if (12 > state.minimum_raise)
+            else if (9 > state.minimum_raise)
             {
                 limit = 40;
             }
