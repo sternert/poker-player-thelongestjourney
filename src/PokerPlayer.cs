@@ -49,6 +49,14 @@ namespace Nancy.Simple
             {
                 limit = 20;
             }
+            else if (30 > state.minimum_raise)
+            {
+                limit = 10;
+            }
+            else
+            {
+                limit = 0;
+            }
 
             if (player.bet == 0)
             {
