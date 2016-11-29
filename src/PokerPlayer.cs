@@ -36,7 +36,7 @@ namespace Nancy.Simple
                 return state.current_buy_in - player.bet + state.minimum_raise;
             }
 
-            if (card1.rank == card2.rank)
+            if (CardAnalyzer.IsPair(card1, card2))
             {
                 return state.current_buy_in - player.bet + state.minimum_raise * 4;
             }
