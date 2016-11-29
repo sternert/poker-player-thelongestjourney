@@ -18,6 +18,7 @@ namespace Nancy.Simple
             var card1 = player.hole_cards[0];
             var card2 = player.hole_cards[1];
 
+
             if (state.community_cards.Any())
             {
                 Console.Error.WriteLine("CommunityCards!");
@@ -29,7 +30,6 @@ namespace Nancy.Simple
 
             }
             double limit = 140;
-            int highBetlimit = 300;
 
             var cardPoints = CardAnalyzer.GetPoints(card1, card2);
 
@@ -75,9 +75,14 @@ namespace Nancy.Simple
                 return player.stack;
             }
 
-            if (highBetlimit < cardPoints)
+            if (numberOfActivePlayers(state.players) == 2)
             {
-                return state.pot + 30;
+                var karinDaniel =
+                    state.players.FirstOrDefault(other => other.status == "active" && other.name == "KarinDaniel");
+                if (karinDaniel != null && karinDaniel.stack == 0 && player.stack >= 1000)
+                {
+                    limit = 120;
+                }
             }
 
             if (limit < cardPoints)
